@@ -76,3 +76,42 @@ form input {
 }
 
 /* new-line  */
+.photograph-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.photograph-info {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.photograph-img {
+  height: 15rem;
+  width: 15rem;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.photograph-zone {
+  color: #901c1c;
+  font-weight: 400;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
