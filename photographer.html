@@ -8,29 +8,84 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/90c2f345b2.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="./index.html">
+        <img src="assets/images/logo.png" class="logo" />
+      </a>
     </header>
     <main id="main"></main>
     <div id="contact_modal">
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 class="modal-title">Contactez-moi</h2>
+          <button
+            class="modal-close"
+            aria-label="Bouton de fermeture de la fenêtre de contact"
+            id="modalCloseBtn"
+          >
+            <img src="assets/icons/close.svg" />
+          </button>
         </header>
-        <form>
-          <div>
-            <label>Prénom</label>
-            <input />
-          </div>
-          <button class="contact_button">Envoyer</button>
+        <form class="modal-form" id="modalForm">
+          <label class="modal-label" for="firstName">Prénom</label><br />
+          <input
+            class="modal-input"
+            type="text"
+            id="firstName"
+            name="firstName"
+            minlength="2"
+            required
+          /><br />
+
+          <label class="modal-label" for="lastName">Nom</label><br />
+          <input
+            class="modal-input"
+            type="text"
+            id="lastName"
+            name="lastName"
+            minlength="2"
+            required
+          /><br />
+
+          <label class="modal-label" for="email">E-mail</label><br />
+          <input
+            class="modal-input"
+            type="email"
+            id="email"
+            name="email"
+            required
+          /><br />
+
+          <label class="modal-label" for="message">Votre message</label><br />
+          <input
+            class="modal-input modal-msg"
+            type="text"
+            id="message"
+            name="message"
+            minlength="10"
+            maxlength="100"
+            required
+          /><br />
+
+          <button
+            class="button modal-submit"
+            aria-label="Bouton de soumission du formulaire du modal de contact"
+            id="submitButton"
+            type="submit"
+          >
+            Envoyer
+          </button>
         </form>
       </div>
     </div>
-    <script type="module" src="/scripts/pages/photographer.js"></script>
     <script type="module" src="/scripts/utils/contactForm.js"></script>
+    <script type="module" src="/scripts/pages/photographer.js"></script>
   </body>
 </html>

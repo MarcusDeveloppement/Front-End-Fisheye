@@ -22,15 +22,14 @@
 }
 
 .modal {
-  border-radius: 5px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
   background-color: #db8876;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 35px;
-  margin: auto;
+  width: 40rem;
+  padding: 2em;
 }
 
 .modal header {
@@ -43,9 +42,8 @@
 }
 
 .modal header h2 {
-  font-size: 64px;
+  font-size: 50px;
   font-weight: normal;
-  text-align: center;
 }
 
 form {
@@ -53,6 +51,7 @@ form {
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
+  margin-top: 3rem;
 }
 
 form label {
@@ -114,4 +113,61 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+}
+
+.modal-close {
+  border: none;
+  background-color: #db8876;
+}
+
+.modal::backdrop {
+  position: fixed;
+  inset: 0px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.modal-submit {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  padding: 1.1rem;
+  width: 10rem;
+  height: 4rem;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.media-card-info {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1em;
+}
+.media-card-title {
+  max-width: 80%;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #911c1c;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.media-like-container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.media-like-count {
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-right: 0.2em;
+  color: #911c1c;
+}
+.media-like-button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  color: #911c1c;
+  cursor: pointer;
 }

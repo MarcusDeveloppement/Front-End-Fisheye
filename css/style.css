@@ -80,3 +80,40 @@ p {
   font-size: 3.6rem;
   margin: 0;
 }
+.dropdown {
+  width: 10rem;
+  height: 4rem;
+  background-color: #901c1c;
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  border: 1rem solid #901c1c;
+  margin-left: 6.2rem;
+}
+.media-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 25rem);
+  justify-content: space-between;
+  gap: 2em 1em;
+  padding: 2em 0;
+  margin: 0 6rem;
+}
+.media-card {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 23rem;
+}
+.media-card-img,
+.media-card-video {
+  width: 35rem;
+  height: 22rem;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+.media-card-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
