@@ -9,7 +9,7 @@ export function mediaFactory(data) {
     article.className += "media-card";
     article.id = id;
 
-    // If the media is an image add the appropriate media card html to the article element
+    // If the media is an image add the appropriate media card HTML to the article element
     if (image) {
       article.innerHTML = `
       <button class="media-card-button" aria-label="Bouton d'ouverture de lightbox">
@@ -20,14 +20,14 @@ export function mediaFactory(data) {
         <div class="media-like-container">
           <span class="media-like-count">${likes}</span>
           <button class="media-like-button" aria-label="Bouton de likes">
-            <i class="media-like-logo fa-heart fa-regular"></i>
+            <i class="media-like-logo far fa-heart" id="heart"></i>
           </button>
         </div>
       </section>
     `;
     }
 
-    // If the media is a video add the appropriate media card html to the article element
+    // If the media is a video add the appropriate media card HTML to the article element
     if (video) {
       article.innerHTML = `
       <button class="media-card-button" aria-label="Bouton d'ouverture de lightbox">
@@ -40,17 +40,39 @@ export function mediaFactory(data) {
         <div class="media-like-container">
           <span class="media-like-count">${likes}</span>
           <button class="media-like-button" aria-label="Bouton de likes">
-          <i class="media-like-logo fa-heart fa-regular"></i>
+            <i class="media-like-logo far fa-heart" id="heart"></i>
           </button>
         </div>
       </section>
     `;
     }
 
-    // Return the article element
+    const likeButton = article.querySelector(".media-like-button");
+    const heartIcon = article.querySelector(".media-like-logo");
+    const likeCount = article.querySelector(".media-like-count");
+
+    let isLiked = false;
+    let likesCountValue = likes;
+
+    likeButton.addEventListener("click", function () {
+      if (isLiked) {
+        likesCountValue--;
+        likeCount.textContent = likesCountValue;
+        heartIcon.classList.remove("fas");
+        heartIcon.classList.add("far");
+      } else {
+        likesCountValue++;
+        likeCount.textContent = likesCountValue;
+        heartIcon.classList.remove("far");
+        heartIcon.classList.add("fas");
+      }
+      isLiked = !isLiked;
+    });
+
+    // Retourne l'élément article
     return article;
   }
 
-  // Returning an object with the getMediaCardDOM function
+  // Retourne un objet avec la fonction getMediaCardDOM
   return { getMediaCardDOM };
 }

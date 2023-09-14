@@ -30,6 +30,7 @@
   background-color: #db8876;
   width: 40rem;
   padding: 2em;
+  z-index: 5;
 }
 
 .modal header {

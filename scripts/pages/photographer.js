@@ -73,9 +73,29 @@ function validateModalForm(event) {
       email: email.value,
       message: message.value,
     });
-    // modalForm.reset();
     closeModal("contact_modal");
   }
+}
+
+// setting up the overlay
+function overlay() {
+  const btnContact = document.getElementById("contactBtn");
+  const overlay = document.getElementById("overlay");
+  const modalClose = document.getElementById("modalCloseBtn");
+  const submitBtn = document.getElementById("submitButton");
+  btnContact.addEventListener("click", function () {
+    overlay.style.display = "block";
+  });
+
+  modalClose.addEventListener("click", function () {
+    overlay.style.display = "none";
+  });
+
+  submitBtn.addEventListener("click", function () {
+    if (modalForm.checkValidity() === true) {
+      overlay.style.display = "none";
+    }
+  });
 }
 // *****************************************************************THE DROPDOWN ***********************************************************
 function renderDropdown() {
@@ -149,6 +169,56 @@ function renderMediaSection(array) {
   });
 }
 
+// ******************************************************************* THE FOOTER *************************************************************
+
+function renderPhotographFooter(obj) {
+  const { price } = obj;
+
+  const mediaLikeCounts = document.querySelectorAll(".media-like-count");
+
+  let totalMediaLikeCount = 0;
+  mediaLikeCounts.forEach((media) => {
+    totalMediaLikeCount += Number(media.textContent);
+  });
+
+  const photographFooter = `
+    <aside class="footer">
+      <div class="footer-container">
+        <span class="footer-likes" id="totalLikesCount">${totalMediaLikeCount}</span>
+        <i class="fa-heart fas"></i>
+      </div>
+      <p>${price}€ / jour</p>
+    </aside>
+  `;
+
+  const footer = document.createElement("footer");
+  footer.innerHTML = photographFooter;
+
+  const body = document.body;
+  body.appendChild(footer);
+
+  // Incrementation of the total Likes
+  const articleSection = document.querySelector(".media-section");
+  const priceElements = articleSection.querySelectorAll(".media-like-logo");
+
+  // browse the priceElements
+  priceElements.forEach((priceElement) => {
+    priceElement.addEventListener("click", () => {
+      //conditions for increment the total
+      if (priceElement.classList.contains("far")) {
+        totalMediaLikeCount++;
+      } else {
+        totalMediaLikeCount--;
+      }
+      // set up the results
+      document.getElementById("totalLikesCount").textContent =
+        totalMediaLikeCount;
+    });
+  });
+}
+
+// *********************************************** Carousselles ************************************************
+
 // create a function to call and render the result
 async function renderPhotographPage() {
   await PhotographHeader(getPhotographerInfo);
@@ -156,6 +226,8 @@ async function renderPhotographPage() {
   await renderDropdown();
   await renderMediaSection(photographerMedia);
   addEventListeners();
+  await renderPhotographFooter(getPhotographerInfo);
+  overlay();
 }
 
 renderPhotographPage();
