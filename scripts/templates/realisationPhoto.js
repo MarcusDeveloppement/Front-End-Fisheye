@@ -1,6 +1,6 @@
 export function mediaFactory(data) {
   // Destructuring the data object to extract its properties
-  const { id, photographerId, title, image, video, likes } = data;
+  const { id, photographerId, title, image, video, likes, thumbnail } = data;
 
   // Defining a function that will return a DOM element for the media card
   function getMediaCardDOM() {
@@ -13,7 +13,7 @@ export function mediaFactory(data) {
     if (image) {
       article.innerHTML = `
       <button class="media-card-button" aria-label="Bouton d'ouverture de lightbox">
-        <img class="media-card-img" src="assets/images/${photographerId}/${image}" alt="${title}">
+        <img class="media-card-img affiche" src="assets/images/${photographerId}/${image}" data-src="assets/images/${photographerId}/${image}" data-media-type="image" alt="${title}">
       </button>
       <section class="media-card-info">
         <h2 class="media-card-title">${title}</h2>
@@ -31,19 +31,19 @@ export function mediaFactory(data) {
     if (video) {
       article.innerHTML = `
       <button class="media-card-button" aria-label="Bouton d'ouverture de lightbox">
-        <video class="media-card-video" title="${title}">
-          <source src="assets/images/${photographerId}/${video}" type="video/mp4">
-        </video>
-      </button>
-      <section class="media-card-info">
-        <h2 class="media-card-title">${title}</h2>
-        <div class="media-like-container">
-          <span class="media-like-count">${likes}</span>
-          <button class="media-like-button" aria-label="Bouton de likes">
+      <img class="media-card-video affiche  hide-video" src="assets/images/${photographerId}/${thumbnail}" data-src="assets/images/${photographerId}/${video}" data-media-type="video" alt="${title}">
+    </button>
+    <section class="media-card-info">
+    <h2 class="media-card-title">${title}</h2>
+    <div class="media-like-container">
+        <span class="media-like-count">${likes}</span>
+        <button class="media-like-button" aria-label="Bouton de likes">
             <i class="media-like-logo far fa-heart" id="heart"></i>
-          </button>
-        </div>
-      </section>
+        </button>
+    </div>
+</section>
+
+  
     `;
     }
 
@@ -69,10 +69,9 @@ export function mediaFactory(data) {
       isLiked = !isLiked;
     });
 
-    // Retourne l'élément article
+    // back article elem
     return article;
   }
 
-  // Retourne un objet avec la fonction getMediaCardDOM
   return { getMediaCardDOM };
 }

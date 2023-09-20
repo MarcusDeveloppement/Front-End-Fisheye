@@ -123,9 +123,9 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2); /* Couleur de fond semi-transparente */
-  display: none; /* Caché au départ */
-  z-index: 1; /* Au-dessus de tout le contenu de la page */
+  background-color: rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 1;
 }
 footer {
   display: flex;
@@ -144,4 +144,8 @@ footer {
 }
 footer p {
   color: black !important;
+}
+/* caroussel  */
+.modal-pic {
+  display: none;
 }

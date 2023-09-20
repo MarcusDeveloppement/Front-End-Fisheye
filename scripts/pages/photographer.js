@@ -218,6 +218,92 @@ function renderPhotographFooter(obj) {
 }
 
 // *********************************************** Carousselles ************************************************
+function carousselles() {
+  const galleryItems = document.querySelectorAll(".affiche");
+  const modal = document.getElementById("imageModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalMedia = document.getElementById("modalMedia");
+  const closeBtn = document.getElementById("closeImageModal");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  let currentImageIndex = 0;
+
+  function openModal(index) {
+    const item = galleryItems[index];
+    const mediaType = item.getAttribute("data-media-type");
+    const mediaSrc = item.getAttribute("data-src");
+    const title = item.getAttribute("alt");
+
+    modalTitle.textContent = title;
+    modalMedia.innerHTML = "";
+
+    // condition for if is an image or video
+
+    if (mediaType === "image") {
+      const img = document.createElement("img");
+      img.src = mediaSrc;
+      img.alt = title;
+      img.classList.add("media");
+      modalMedia.appendChild(img);
+    } else if (mediaType === "video") {
+      const video = document.createElement("video");
+      video.src = mediaSrc;
+      video.controls = true;
+      video.classList.add("media");
+      modalMedia.appendChild(video);
+      video.play();
+    }
+
+    modal.style.display = "block";
+    currentImageIndex = index;
+  }
+
+  // function close modale image and video
+  function closeModal() {
+    modal.style.display = "none";
+  }
+
+  // function for view the preview or the next images/videos
+  function showPrevImage() {
+    currentImageIndex =
+      (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+    openModal(currentImageIndex);
+  }
+
+  function showNextImage() {
+    currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+    openModal(currentImageIndex);
+  }
+
+  // open the modal pic
+  galleryItems.forEach(function (item, index) {
+    item.addEventListener("click", function () {
+      openModal(index);
+    });
+  });
+
+  // close the modal with the cross or escape  and move with the arrows left and right
+  closeBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeModal();
+    } else if (event.key === "ArrowLeft") {
+      showPrevImage();
+    } else if (event.key === "ArrowRight") {
+      showNextImage();
+    }
+  });
+
+  prevBtn.addEventListener("click", showPrevImage);
+  nextBtn.addEventListener("click", showNextImage);
+}
 
 // create a function to call and render the result
 async function renderPhotographPage() {
@@ -226,8 +312,9 @@ async function renderPhotographPage() {
   await renderDropdown();
   await renderMediaSection(photographerMedia);
   addEventListeners();
-  await renderPhotographFooter(getPhotographerInfo);
   overlay();
+  await renderPhotographFooter(getPhotographerInfo);
+  carousselles();
 }
 
 renderPhotographPage();
