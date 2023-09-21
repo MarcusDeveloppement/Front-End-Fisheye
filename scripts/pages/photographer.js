@@ -100,57 +100,82 @@ function overlay() {
 // *****************************************************************THE DROPDOWN ***********************************************************
 function renderDropdown() {
   // Create the dropdown menu
-  const dropdownHtml = `
-    <select class="dropdown" id="dropdownMenu" aria-label="Menu de tri">
-      <option class="dropdown-options" value=""> Trier par </option>
-      <option class="dropdown-options" value="Popularité">Popularité</option>
-      <option class="dropdown-options" value="Date">Date</option>
-      <option class="dropdown-options" value="Titre">Titre</option>
-    </select>
-  `;
+  const dropdown = document.createElement("select");
+  dropdown.classList.add("dropdown");
+  dropdown.id = "dropdownMenu";
+  dropdown.setAttribute("aria-label", "Menu de tri");
 
-  // Add the dropdown HTML to the main element
+  // Create options for the dropdown
+  const options = [
+    { value: "", text: "Trier par" },
+    { value: "Popularité", text: "Popularité" },
+    { value: "Date", text: "Date" },
+    { value: "Titre", text: "Titre" },
+  ];
+
+  options.forEach((option) => {
+    const optionElem = document.createElement("option");
+    optionElem.classList.add("dropdown-options");
+    optionElem.value = option.value;
+    optionElem.textContent = option.text;
+    dropdown.appendChild(optionElem);
+  });
+
+  // Add the dropdown to the main element
   const mainElement = document.querySelector("main");
-  mainElement.innerHTML += dropdownHtml;
+  mainElement.appendChild(dropdown);
 }
 
 async function sortMediaSection() {
   // Retrieve the selected option value
-  const selectedOption = this.value;
-
-  // Sort the photographerMedia array using the likes key if the selected option is "Popularité"
-  if (selectedOption == "Popularité") {
-    await photographerMedia.sort((a, b) => {
-      return b.likes - a.likes;
-    });
-  }
-
-  // Sort the photographerMedia array using the date key if the selected option is "Date"
-  if (selectedOption == "Date") {
-    await photographerMedia.sort((a, b) => {
-      return new Date(a.date) - new Date(b.date);
-    });
-  }
-
-  // Sort the photographerMedia array using the title key if the selected option is "Titre"
-  if (selectedOption == "Titre") {
-    await photographerMedia.sort((a, b) => {
-      if (a.title < b.title) {
-        return -1;
-      }
-      if (a.title > b.title) {
-        return 1;
-      }
-      return 0;
-    });
+  const dropdownMenu = document.getElementById("dropdownMenu");
+  const selectedOption = dropdownMenu.value;
+  // Sort the photographerMedia array based on the selected option
+  if (selectedOption === "Popularité") {
+    photographerMedia.sort((a, b) => b.likes - a.likes);
+  } else if (selectedOption === "Date") {
+    photographerMedia.sort((a, b) => new Date(a.date) - new Date(b.date));
+  } else if (selectedOption === "Titre") {
+    photographerMedia.sort((a, b) => a.title.localeCompare(b.title));
   }
 
   // Remove the existing media section
   const mediaSection = document.querySelector(".media-section");
-  mediaSection.remove();
+  if (mediaSection) {
+    mediaSection.remove();
+  }
 
-  // display the articles
+  // Display the sorted media
   renderMediaSection(photographerMedia);
+
+  // Reinitialize the carousel
+  carousselles();
+
+  // ********** Update the total likes reused the footer logic ***************
+  const mediaLikeCounts = document.querySelectorAll(".media-like-count");
+  let totalMediaLikeCount = 0;
+  mediaLikeCounts.forEach((media) => {
+    totalMediaLikeCount += Number(media.textContent);
+  });
+
+  const articleSection = document.querySelector(".media-section");
+  const priceElements = articleSection.querySelectorAll(".media-like-logo");
+
+  // browse the priceElements
+  priceElements.forEach((priceElement) => {
+    priceElement.addEventListener("click", () => {
+      //conditions for increment the total
+      if (priceElement.classList.contains("far")) {
+        totalMediaLikeCount++;
+      } else {
+        totalMediaLikeCount--;
+      }
+      // set up the results
+      document.getElementById("totalLikesCount").textContent =
+        totalMediaLikeCount;
+    });
+  });
+  overlayPic();
 }
 
 // ***********************************************************SECTION MEDIA REALISATION*********************************************************
@@ -251,8 +276,10 @@ function carousselles() {
       video.src = mediaSrc;
       video.controls = true;
       video.classList.add("media");
+      video.addEventListener("canplay", function () {
+        video.play();
+      });
       modalMedia.appendChild(video);
-      video.play();
     }
 
     modal.style.display = "block";
@@ -304,13 +331,35 @@ function carousselles() {
   prevBtn.addEventListener("click", showPrevImage);
   nextBtn.addEventListener("click", showNextImage);
 }
+function overlayPic() {
+  const afficheElements = document.querySelectorAll(".affiche");
+  const overlay = document.getElementById("overlay-pic");
+  const modalClose = document.getElementById("closeImageModal");
+
+  afficheElements.forEach(function (affiche) {
+    affiche.addEventListener("click", function () {
+      overlay.style.display = "block";
+    });
+  });
+
+  modalClose.addEventListener("click", function () {
+    overlay.style.display = "none";
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      overlay.style.display = "none";
+    }
+  });
+}
 
 // create a function to call and render the result
 async function renderPhotographPage() {
   await PhotographHeader(getPhotographerInfo);
-  await insertPhotographName(getPhotographerInfo);
   await renderDropdown();
+  await insertPhotographName(getPhotographerInfo);
   await renderMediaSection(photographerMedia);
+  await overlayPic();
   addEventListeners();
   overlay();
   await renderPhotographFooter(getPhotographerInfo);

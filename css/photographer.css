@@ -29,7 +29,7 @@
   border-radius: 0.5rem;
   background-color: #db8876;
   width: 40rem;
-  padding: 2em;
+  padding: 2rem;
   z-index: 5;
 }
 
@@ -40,11 +40,13 @@
 
 .modal header img {
   cursor: pointer;
+  margin-bottom: 2.7rem;
 }
 
 .modal header h2 {
   font-size: 50px;
   font-weight: normal;
+  margin-top: 1.2rem;
 }
 
 form {
@@ -52,7 +54,7 @@ form {
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 3rem;
+  margin-top: 3.5rem;
 }
 
 form label {
@@ -132,8 +134,8 @@ svg {
   font-weight: bold;
   color: white;
   padding: 1.1rem;
-  width: 10rem;
-  height: 4rem;
+  width: 12rem;
+  height: 5rem;
   border: none;
   background-color: #901c1c;
   border-radius: 0.5rem;
@@ -171,4 +173,7 @@ svg {
   font-size: 1.5rem;
   color: #911c1c;
   cursor: pointer;
+}
+.modal-msg {
+  height: 13rem;
 }
