@@ -361,10 +361,10 @@ async function renderPhotographPage() {
     await insertPhotographName(getPhotographerInfo);
     await renderMediaSection(photographerMedia);
     await overlayPic();
-    addEventListeners();
-    overlay();
+    await addEventListeners();
+    await overlay();
     await renderPhotographFooter(getPhotographerInfo);
-    carousselles();
+    await carousselles();
 }
 
 renderPhotographPage();
