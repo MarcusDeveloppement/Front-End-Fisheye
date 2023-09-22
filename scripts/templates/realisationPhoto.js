@@ -1,17 +1,17 @@
 export function mediaFactory(data) {
-  // Destructuring the data object to extract its properties
-  const { id, photographerId, title, image, video, likes, thumbnail } = data;
+    // Destructuring the data object to extract its properties
+    const { id, photographerId, title, image, video, likes, thumbnail } = data;
 
-  // Defining a function that will return a DOM element for the media card
-  function getMediaCardDOM() {
-    // Create an article element to contain the media card
-    const article = document.createElement("article");
-    article.className += "media-card";
-    article.id = id;
+    // Defining a function that will return a DOM element for the media card
+    function getMediaCardDOM() {
+        // Create an article element to contain the media card
+        const article = document.createElement("article");
+        article.className += "media-card";
+        article.id = id;
 
-    // If the media is an image add the appropriate media card HTML to the article element
-    if (image) {
-      article.innerHTML = `
+        // If the media is an image add the appropriate media card HTML to the article element
+        if (image) {
+            article.innerHTML = `
       <button class="media-card-button" aria-label="Bouton d'ouverture de lightbox">
         <img class="media-card-img affiche" src="assets/images/${photographerId}/${image}" data-src="assets/images/${photographerId}/${image}" data-media-type="image" alt="${title}">
       </button>
@@ -25,11 +25,11 @@ export function mediaFactory(data) {
         </div>
       </section>
     `;
-    }
+        }
 
-    // If the media is a video add the appropriate media card HTML to the article element
-    if (video) {
-      article.innerHTML = `
+        // If the media is a video add the appropriate media card HTML to the article element
+        if (video) {
+            article.innerHTML = `
       <button class="media-card-button" aria-label="Bouton d'ouverture de lightbox">
       <img class="media-card-video affiche  hide-video" src="assets/images/${photographerId}/${thumbnail}" data-src="assets/images/${photographerId}/${video}" data-media-type="video" alt="${title}">
     </button>
@@ -45,33 +45,33 @@ export function mediaFactory(data) {
 
   
     `;
+        }
+
+        const likeButton = article.querySelector(".media-like-button");
+        const heartIcon = article.querySelector(".media-like-logo");
+        const likeCount = article.querySelector(".media-like-count");
+
+        let isLiked = false;
+        let likesCountValue = likes;
+
+        likeButton.addEventListener("click", function () {
+            if (isLiked) {
+                likesCountValue--;
+                likeCount.textContent = likesCountValue;
+                heartIcon.classList.remove("fas");
+                heartIcon.classList.add("far");
+            } else {
+                likesCountValue++;
+                likeCount.textContent = likesCountValue;
+                heartIcon.classList.remove("far");
+                heartIcon.classList.add("fas");
+            }
+            isLiked = !isLiked;
+        });
+
+        // back article elem
+        return article;
     }
 
-    const likeButton = article.querySelector(".media-like-button");
-    const heartIcon = article.querySelector(".media-like-logo");
-    const likeCount = article.querySelector(".media-like-count");
-
-    let isLiked = false;
-    let likesCountValue = likes;
-
-    likeButton.addEventListener("click", function () {
-      if (isLiked) {
-        likesCountValue--;
-        likeCount.textContent = likesCountValue;
-        heartIcon.classList.remove("fas");
-        heartIcon.classList.add("far");
-      } else {
-        likesCountValue++;
-        likeCount.textContent = likesCountValue;
-        heartIcon.classList.remove("far");
-        heartIcon.classList.add("fas");
-      }
-      isLiked = !isLiked;
-    });
-
-    // back article elem
-    return article;
-  }
-
-  return { getMediaCardDOM };
+    return { getMediaCardDOM };
 }
