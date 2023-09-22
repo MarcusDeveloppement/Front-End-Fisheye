@@ -1,218 +1,227 @@
 @import url("photographer.css");
 
 body {
-  font-family: "DM Sans", sans-serif;
-  margin: 0 2rem;
+    font-family: "DM Sans", sans-serif;
+    margin: 0 2rem;
 }
 
 a {
-  text-decoration: none;
-  transition: transform 0.3s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 90px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
 }
 
 h1 {
-  color: #901c1c;
-  margin-right: 100px;
+    color: #901c1c;
+    margin-right: 100px;
 }
 
 h3 {
-  color: #901c1c;
-  font-weight: 500;
+    color: #901c1c;
+    font-weight: 500;
 }
 h4 {
-  font-weight: 500;
+    font-weight: 500;
 }
 p {
-  color: #757575;
+    color: #757575;
 }
 
 .logo {
-  height: 50px;
-  margin-left: 100px;
+    height: 50px;
+    margin-left: 100px;
 }
 
 .photographer_section {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
-  margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    margin-top: 100px;
 }
 
 .photographer_section article {
-  justify-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .photographer_section article h2 {
-  color: #d3573c;
-  font-size: 36px;
+    color: #d3573c;
+    font-size: 36px;
 }
 
 .photographer_section article img {
-  height: 200px;
-  width: 200px;
-  object-fit: cover;
-  border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 h3,
 h2,
 h4,
 p {
-  margin: 0;
+    margin: 0;
 }
 .photograph-name {
-  color: #d3573c;
-  font-weight: 400;
-  font-size: 3.6rem;
-  margin: 0;
+    color: #d3573c;
+    font-weight: 400;
+    font-size: 3.6rem;
+    margin: 0;
 }
 .dropdown {
-  width: 10rem;
-  height: 4rem;
-  background-color: #901c1c;
-  color: #ffffff;
-  font-size: 1.3rem;
-  font-weight: 700;
-  border-radius: 0.5rem;
-  border: 1rem solid #901c1c;
-  margin-left: 6.2rem;
+    width: 10rem;
+    height: 4rem;
+    background-color: #901c1c;
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    border: 1rem solid #901c1c;
+    margin-left: 6.2rem;
 }
 .media-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 25rem);
-  justify-content: space-between;
-  gap: 2em 1em;
-  padding: 2em 0;
-  margin: 0 6rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 24rem);
+    justify-content: space-between;
+    gap: 2em 1em;
+    padding: 2em 0;
+    margin: 0 6rem;
 }
 .media-card {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 23rem;
+    display: flex;
+    flex-flow: column nowrap;
+    width: 23rem;
 }
 .media-card-img,
 .media-card-video {
-  width: 35rem;
-  height: 22rem;
-  -o-object-fit: cover;
-  object-fit: cover;
-  border-radius: 0.5rem;
+    width: 35rem;
+    height: 22rem;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 0.5rem;
 }
 .media-card-button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-  display: none;
-  z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1;
 }
 footer {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 .footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  gap: 50px;
-  background-color: #db8876;
-  width: 17rem;
-  padding: 1.5rem;
-  border-radius: 5px 5px 0 0;
-  font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 50px;
+    background-color: #db8876;
+    width: 17rem;
+    padding: 1.5rem;
+    border-radius: 5px 5px 0 0;
+    font-size: 1.5rem;
 }
 footer p {
-  color: black !important;
+    color: black !important;
 }
 /* caroussel  */
 .modal-pic {
-  display: none;
-  width: 70rem;
-  background-color: #fff;
-  z-index: 7;
+    display: none;
+    width: 70rem;
+    background-color: #fff;
+    z-index: 7;
 }
 .media {
-  width: 56rem;
-  height: 58rem;
-  object-fit: cover;
-  border-radius: 12px;
+    width: 56rem;
+    height: 58rem;
+    object-fit: cover;
+    border-radius: 12px;
 }
 .modal-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 .close {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 3.2rem;
-  cursor: pointer;
-  margin-right: 0.8rem;
-  margin-top: 1rem;
-  color: #901c1c;
-  margin-bottom: 53rem;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 3.2rem;
+    cursor: pointer;
+    margin-right: 0.8rem;
+    margin-top: 1rem;
+    color: #901c1c;
+    margin-bottom: 53rem;
 }
 
 .global-pic {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
 }
 
 .chevron {
-  font-size: 3rem;
-  margin: 1rem;
-  color: #901c1c;
+    font-size: 3rem;
+    margin: 1rem;
+    color: #901c1c;
 }
 button {
-  border: none;
-  background: none;
-  cursor: pointer;
-  outline: none;
-  padding: 0;
-  margin: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    margin: 0;
 }
 
 .modalpic-title {
-  margin-left: 5.3rem;
-  padding-top: 1.2rem;
-  color: #d3573c;
-  font-size: 2rem;
+    margin-left: 5.3rem;
+    padding-top: 1.2rem;
+    color: #d3573c;
+    font-size: 2rem;
 }
 /* overlay for carousel */
 .overlay-pic {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255);
-  display: none;
-  z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255);
+    display: none;
+    z-index: 2;
 }
 .photographer-card a:hover {
-  transition: transform 0.2s;
-  transform: scale(1.1);
+    transition: transform 0.2s;
+    transform: scale(1.1);
+}
+
+@media (max-width: 1440px) {
+    .media-section {
+        grid-template-columns: repeat(auto-fill, 23rem);
+    }
+    .contact_button {
+        margin: 5rem;
+    }
 }

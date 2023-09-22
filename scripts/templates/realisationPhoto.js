@@ -41,7 +41,7 @@ export function mediaFactory(data) {
             <i class="media-like-logo far fa-heart" id="heart"></i>
         </button>
     </div>
-</section>
+    </section>
 
   
     `;
