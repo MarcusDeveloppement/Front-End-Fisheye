@@ -1,3 +1,4 @@
+// imports modules as needed
 import { photographerInfo } from "../utils/photographeInfoRecup.js";
 import { closeModal } from "../utils/contactForm.js";
 import { mediaFactory } from "../templates/realisationPhoto.js";
@@ -33,7 +34,7 @@ function insertPhotographName(object) {
     modalTitle.innerHTML = `Contactez-moi<br>${name}`;
 }
 
-function addEventListeners() {
+function addEventListenersForm() {
     const contactBtn = document.querySelector(".contact_button");
     contactBtn.addEventListener("click", function () {
         const modal = document.getElementById("contact_modal");
@@ -55,7 +56,7 @@ function addEventListeners() {
 }
 
 function validateModalForm(event) {
-    // Prevent the default form submission
+    // Prevent the default for submission
     event.preventDefault();
 
     // Get the elements of the form
@@ -113,7 +114,7 @@ function renderDropdown() {
         { value: "Date", text: "Date" },
         { value: "Titre", text: "Titre" },
     ];
-
+    //Foreach loop that goes through each dropdown option
     options.forEach((option) => {
         const optionElem = document.createElement("option");
         optionElem.classList.add("dropdown-options");
@@ -176,12 +177,14 @@ async function sortMediaSection() {
                 totalMediaLikeCount;
         });
     });
+    // put the orverla back for the dropdown menu
     overlayPic();
 }
 
 // ***********************************************************SECTION MEDIA REALISATION*********************************************************
 
 function renderMediaSection(array) {
+    // create and select
     const mediaSection = document.createElement("div");
     mediaSection.className = "media-section";
     const mainEl = document.querySelector("main");
@@ -252,7 +255,7 @@ function carousselles() {
     const closeBtn = document.getElementById("closeImageModal");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
-
+    // initiasation index used for images or video
     let currentImageIndex = 0;
 
     function openModal(index) {
@@ -265,7 +268,6 @@ function carousselles() {
         modalMedia.innerHTML = "";
 
         // condition for if is an image or video
-
         if (mediaType === "image") {
             const img = document.createElement("img");
             img.src = mediaSrc;
@@ -284,6 +286,7 @@ function carousselles() {
         }
 
         modal.style.display = "block";
+        // update the index
         currentImageIndex = index;
     }
 
@@ -332,6 +335,7 @@ function carousselles() {
     prevBtn.addEventListener("click", showPrevImage);
     nextBtn.addEventListener("click", showNextImage);
 }
+// Overlay function for the carousel
 function overlayPic() {
     const afficheElements = document.querySelectorAll(".affiche");
     const overlay = document.getElementById("overlay-pic");
@@ -361,7 +365,7 @@ async function renderPhotographPage() {
     await insertPhotographName(getPhotographerInfo);
     await renderMediaSection(photographerMedia);
     await overlayPic();
-    await addEventListeners();
+    await addEventListenersForm();
     await overlay();
     await renderPhotographFooter(getPhotographerInfo);
     await carousselles();

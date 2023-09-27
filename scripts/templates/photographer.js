@@ -1,3 +1,4 @@
+// Extract some properties from the object data
 export function photographerTemplate(data) {
     const { name, id, city, country, tagline, price, portrait } = data;
 
@@ -7,7 +8,7 @@ export function photographerTemplate(data) {
         const article = document.createElement("article");
         article.className += "photographer-card";
 
-        // Create different element for the index page
+        // Create differents elements for the index page
         const photographerLink = document.createElement("a");
         photographerLink.className += "photographer-link";
         photographerLink.setAttribute("href", `photographer.html?id=${id}`);

@@ -1,5 +1,4 @@
 export function mediaFactory(data) {
-    // Destructuring the data object to extract its properties
     const { id, photographerId, title, image, video, likes, thumbnail } = data;
 
     // Defining a function that will return a DOM element for the media card
@@ -46,7 +45,7 @@ export function mediaFactory(data) {
   
     `;
         }
-
+        // return heart like and increase the result
         const likeButton = article.querySelector(".media-like-button");
         const heartIcon = article.querySelector(".media-like-logo");
         const likeCount = article.querySelector(".media-like-count");

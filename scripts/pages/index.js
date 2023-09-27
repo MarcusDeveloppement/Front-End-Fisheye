@@ -1,3 +1,4 @@
+// import 2 modules
 import { getPhotographers } from "../utils/dataImport.js";
 import { photographerTemplate } from "../templates/photographer.js";
 

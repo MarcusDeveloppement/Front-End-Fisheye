@@ -1,3 +1,4 @@
+// recover data
 export async function getPhotographers() {
     const jsonPath = "data/photographers.json";
     const response = await fetch(jsonPath);
