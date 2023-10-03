@@ -1,0 +1,18 @@
+# Ignore npm modules
+node_modules/
+
+# Ignore generated dependency files
+package-lock.json
+npm-debug.log
+
+# Ignore temporary files
+*.log
+*.swp
+.DS_Store
+
+# Ignore editor configuration files
+.vscode/
+.idea/
+
+# Ignore local development environment files
+.env

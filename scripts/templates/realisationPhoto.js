@@ -12,7 +12,7 @@ export function mediaFactory(data) {
         if (image) {
             article.innerHTML = `
       <button class="media-card-button" aria-label="Bouton d'ouverture de lightbox">
-        <img class="media-card-img affiche" src="assets/images/${photographerId}/${image}" data-src="assets/images/${photographerId}/${image}" data-media-type="image" alt="${title}">
+        <img class="media-card-img affiche" src="assets/images/${photographerId}/${image}" data-src="assets/images/${photographerId}/${image}" data-media-type="image" alt="${title}" >
       </button>
       <section class="media-card-info">
         <h2 class="media-card-title">${title}</h2>

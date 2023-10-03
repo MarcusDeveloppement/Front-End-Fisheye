@@ -39,6 +39,8 @@ function addEventListenersForm() {
     contactBtn.addEventListener("click", function () {
         const modal = document.getElementById("contact_modal");
         modal.style.display = "block";
+        const firstName = document.getElementById("firstName");
+        firstName.focus();
     });
 
     const closeBtn = document.getElementById("modalCloseBtn");
@@ -54,6 +56,12 @@ function addEventListenersForm() {
     const dropdownMenu = document.getElementById("dropdownMenu");
     dropdownMenu.addEventListener("change", sortMediaSection);
 }
+// close modal thanks to escape
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        closeModal("contact_modal");
+    }
+});
 
 function validateModalForm(event) {
     // Prevent the default for submission
@@ -92,7 +100,11 @@ function overlay() {
     modalClose.addEventListener("click", function () {
         overlay.style.display = "none";
     });
-
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            overlay.style.display = "none";
+        }
+    });
     submitBtn.addEventListener("click", function () {
         if (modalForm.checkValidity() === true) {
             overlay.style.display = "none";
@@ -249,6 +261,7 @@ function renderPhotographFooter(obj) {
 // *********************************************** Carousselles ************************************************
 function carousselles() {
     const galleryItems = document.querySelectorAll(".affiche");
+    const mediaCardBtn = document.querySelectorAll(".media-card-button");
     const modal = document.getElementById("imageModal");
     const modalTitle = document.getElementById("modalTitle");
     const modalMedia = document.getElementById("modalMedia");
@@ -307,14 +320,22 @@ function carousselles() {
         openModal(currentImageIndex);
     }
 
-    // open the modal pic
+    // open the modal pic and add keyboard event for "Enter" key
     galleryItems.forEach(function (item, index) {
         item.addEventListener("click", function () {
             openModal(index);
         });
     });
+    mediaCardBtn.forEach(function (item, index) {
+        item.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                openModal(index);
+            }
+        });
+        item.setAttribute("tabindex", "0");
+    });
 
-    // close the modal with the cross or escape  and move with the arrows left and right
+    // close the modal with the cross or escape and move with the arrows left and right
     closeBtn.addEventListener("click", closeModal);
     modal.addEventListener("click", function (event) {
         if (event.target === modal) {
